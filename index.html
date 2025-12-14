@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <title>Personal Web</title>
+</head>
+<body>
+    <nav>
+    <div class="logo">
+        Ahmad<span>Humam</span>
+    </div>
+    <div class="nav-container">
+        <div class="links">
+            <a href="">Home</a>
+            <a href="">Skills</a>
+            <a href="">Introduction</a>
+            <a href="">Services</a>
+            <a href="">Contact</a>
+        </div>
+    </div>
+    <i class="fa-solid fa-bars hamburg" onclick="hamburg()"></i>
+    <div class="dropdown">
+        <div class="links">
+            <a href="">Home</a>
+            <a href="">Skills</a>
+            <a href="">Introduction</a>
+            <a href="">Services</a>
+            <a href="">Contact</a>
+        <i class="fa-solid fa-xmark cancel" onclick="cancel()"></i>
+        </div>
+    </div>
+    </nav>
+    <section>
+        <div class="main-container">
+            <div class="content">
+                <h1>Hey I'm<span> Ahmad</span></h1>
+                <div class="typewritter">I'm a <span class="typewritter-text"></span><label for=""></label>|</div>
+                <p>Hello I'am Front-end development is the art and science of crafting the user-facing side of websites and web applications.</p>
+                <div class="social-links">
+                    <i class="fa-brands fa-linkedin"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-github"></i>
+                    <i class="fa-brands fa-youtube"></i>
+                </div>
+                <button>Download CV</button>
+            </div>
+            <div class="image">
+                <img src="main.jpg" alt="">
+            </div>
+        </div>
+    </section>
+    <script>
+        function hamburg (){
+            const navbar = document.querySelector(".dropdown")
+            navbar.style.transform = "translateY(0px)"
+        }
+
+        function cancel (){
+            const navbar = document.querySelector(".cancel")
+            navbar.style.transform = "translateY(-500px)"
+        }
+
+        const texts = [
+            "WEB DEVELOPER",
+            "YOUTUBER",
+            "PROGRAMMER"
+    ]
+
+    const speed = 100;
+    const textElements = document.querySelector(".typewritter-text")
+
+    let textIndex = 0;
+    let characterIndex = 0;
+
+    function typeWritter(){
+        if(characterIndex<texts[textIndex].length){
+            textElements.innerHTML += texts[textIndex].charAt(characterIndex);
+            characterIndex++;
+            setTimeout(typeWritter, speed);
+        }
+        else {
+            setTimeout(eraseText, 100)
+        }
+    }
+
+    function eraseText(){
+        if(textElements.innerHTML.length>0){
+            textElements.innerHTML = textElements.innerHTML.slice(0,-1);
+            setTimeout(eraseText,50)
+        }
+        else {
+            textIndex = (textIndex + 1)%texts.length;
+            characterIndex = 0;
+            setTimeout(typeWritter,500)
+        }
+    }
+
+    window.onload = typeWritter;
+    </script>
+</body>
+</html>
